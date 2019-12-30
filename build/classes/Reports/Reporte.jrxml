@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c974978f-0d40-4d81-a8f1-e57c2f5ac75a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_pedido" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     Pedido."id_pedido" AS Pedido_id_pedido,
+     Pedido."id_cliente" AS Pedido_id_cliente,
+     Pedido."Estado" AS Pedido_Estado,
+     Pedido."Municipio" AS Pedido_Municipio,
+     Pedido."Direccion" AS Pedido_Direccion,
+     Pedido."Codigo_Postal" AS Pedido_Codigo_Postal,
+     Pedido."Telefono" AS Pedido_Telefono,
+     Pedido."created_at" AS Pedido_created_at,
+     Pedido."updated_at" AS Pedido_updated_at,
+     Pedido."Estado_Actual" AS Pedido_Estado_Actual,
+     Pedido."Monto" AS Pedido_Monto,
+     detalle_pedido."id_detalle_pedido" AS detalle_pedido_id_detalle_pedido,
+     detalle_pedido."id_pedido" AS detalle_pedido_id_pedido,
+     detalle_pedido."id_producto" AS detalle_pedido_id_producto,
+     detalle_pedido."cantidad_producto" AS detalle_pedido_cantidad_producto,
+     detalle_pedido."subtotal" AS detalle_pedido_subtotal,
+     Cliente."id_cliente" AS Cliente_id_cliente,
+     Cliente."Nombre_Cliente" AS Cliente_Nombre_Cliente,
+     Cliente."Apellidos_Cliente" AS Cliente_Apellidos_Cliente,
+     Cliente."Email" AS Cliente_Email,
+     Cliente."Password" AS Cliente_Password,
+     Cliente."created_at" AS Cliente_created_at,
+     Cliente."updated_at" AS Cliente_updated_at,
+     Producto."id_producto" AS Producto_id_producto,
+     Producto."id_categoria" AS Producto_id_categoria,
+     Producto."Nombre_Producto" AS Producto_Nombre_Producto,
+     Producto."Descripcion_Producto" AS Producto_Descripcion_Producto,
+     Producto."Marca" AS Producto_Marca,
+     Producto."Stock" AS Producto_Stock,
+     Producto."Precio" AS Producto_Precio,
+     Producto."Imagen_Producto" AS Producto_Imagen_Producto,
+     Producto."created_at" AS Producto_created_at,
+     Producto."updated_at" AS Producto_updated_at
+FROM
+     "dbo"."Pedido" Pedido INNER JOIN "dbo"."detalle_pedido" detalle_pedido ON Pedido."id_pedido" = detalle_pedido."id_pedido"
+     INNER JOIN "dbo"."Cliente" Cliente ON Pedido."id_cliente" = Cliente."id_cliente"
+     INNER JOIN "dbo"."Producto" Producto ON detalle_pedido."id_producto" = Producto."id_producto"
+WHERE Pedido."id_pedido"=$P!{id_pedido}]]>
+	</queryString>
+	<field name="Pedido_id_pedido" class="java.lang.Integer"/>
+	<field name="Pedido_id_cliente" class="java.lang.Integer"/>
+	<field name="Pedido_Estado" class="java.lang.String"/>
+	<field name="Pedido_Municipio" class="java.lang.String"/>
+	<field name="Pedido_Direccion" class="java.lang.String"/>
+	<field name="Pedido_Codigo_Postal" class="java.lang.Integer"/>
+	<field name="Pedido_Telefono" class="java.lang.Long"/>
+	<field name="Pedido_created_at" class="java.sql.Date"/>
+	<field name="Pedido_updated_at" class="java.sql.Date"/>
+	<field name="Pedido_Estado_Actual" class="java.lang.String"/>
+	<field name="Pedido_Monto" class="java.math.BigDecimal"/>
+	<field name="detalle_pedido_id_detalle_pedido" class="java.lang.Integer"/>
+	<field name="detalle_pedido_id_pedido" class="java.lang.Integer"/>
+	<field name="detalle_pedido_id_producto" class="java.lang.Integer"/>
+	<field name="detalle_pedido_cantidad_producto" class="java.lang.Integer"/>
+	<field name="detalle_pedido_subtotal" class="java.math.BigDecimal"/>
+	<field name="Cliente_id_cliente" class="java.lang.Integer"/>
+	<field name="Cliente_Nombre_Cliente" class="java.lang.String"/>
+	<field name="Cliente_Apellidos_Cliente" class="java.lang.String"/>
+	<field name="Cliente_Email" class="java.lang.String"/>
+	<field name="Cliente_Password" class="java.lang.String"/>
+	<field name="Cliente_created_at" class="java.sql.Date"/>
+	<field name="Cliente_updated_at" class="java.sql.Date"/>
+	<field name="Producto_id_producto" class="java.lang.Integer"/>
+	<field name="Producto_id_categoria" class="java.lang.Integer"/>
+	<field name="Producto_Nombre_Producto" class="java.lang.String"/>
+	<field name="Producto_Descripcion_Producto" class="java.lang.String"/>
+	<field name="Producto_Marca" class="java.lang.String"/>
+	<field name="Producto_Stock" class="java.lang.Integer"/>
+	<field name="Producto_Precio" class="java.math.BigDecimal"/>
+	<field name="Producto_Imagen_Producto" class="java.lang.String"/>
+	<field name="Producto_created_at" class="java.sql.Date"/>
+	<field name="Producto_updated_at" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="226" y="18" width="209" height="32" uuid="0b2bb433-8699-4601-ad52-8d4be75b3034"/>
+				<textElement>
+					<font fontName="Open Sans" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resumen de compra]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="181" height="61" uuid="cfeb7238-ec18-4927-9cfa-bcce1f5dff99"/>
+				<imageExpression><![CDATA["C:\\wamp64\\www\\Servinox\\assets\\img\\logoazul.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="455" y="0" width="100" height="20" uuid="8902f736-47e6-4d3d-a2e2-a8552d066616"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="50" width="42" height="20" uuid="a35d7689-4070-42c5-b42a-56d2dcb4440b"/>
+				<textElement>
+					<font fontName="Open Sans" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente_Nombre_Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="484" y="50" width="71" height="20" uuid="d11eb917-e017-400e-a125-c904b0b9b7cc"/>
+				<textElement>
+					<font fontName="Open Sans" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente_Apellidos_Cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="2" width="100" height="20" uuid="f9b46b09-7dc2-4857-b58a-468e4178f433"/>
+				<textElement>
+					<font fontName="Open Sans" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="2" width="100" height="20" uuid="ce4011c0-9fce-466e-941c-7230cb61e01a"/>
+				<textElement>
+					<font fontName="Open Sans" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="2" width="100" height="20" uuid="cb44cdae-1a9a-4500-abc8-afe4e0a2dbef"/>
+				<textElement>
+					<font fontName="Open Sans" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="2" width="100" height="20" uuid="2f86b216-aa21-4fc1-a48b-69a2bb12e111"/>
+				<textElement>
+					<font fontName="Open Sans" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio Unitario]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="16" y="10" width="140" height="20" uuid="fe05f78b-6971-4890-9737-1d58756910c4"/>
+				<textElement>
+					<font fontName="Open Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Producto_Nombre_Producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="173" y="10" width="100" height="20" uuid="b6d0703e-3d15-4bd9-af5c-1aafa7854a7d"/>
+				<textElement>
+					<font fontName="Open Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_pedido_cantidad_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="10" width="100" height="20" uuid="6d595a96-40ee-4b10-a4c0-068ade73ee90"/>
+				<textElement>
+					<font fontName="Open Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_pedido_subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="10" width="100" height="20" uuid="a7f550d6-b21b-4915-a747-cf9796d8920f"/>
+				<textElement>
+					<font fontName="Open Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Producto_Precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="333" y="8" width="122" height="21" uuid="56c6d094-4e3a-4ba1-ab98-55723b96b582"/>
+				<textElement>
+					<font fontName="Open Sans" size="15" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Total Pagado: $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="9" width="100" height="20" uuid="a5c4a218-859c-4ab6-935a-109c98a6d306"/>
+				<textElement>
+					<font fontName="Open Sans" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pedido_Monto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

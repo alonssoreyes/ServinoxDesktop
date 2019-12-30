@@ -54,7 +54,7 @@ public class ProductoDAO {
 
         return lista;
     }
-    
+    //Agrega un producto a la base de datos
     public int add(Object[] o) {
         int r = 0;
         String sql = "INSERT INTO Producto (id_categoria,Nombre_Producto,Descripcion_Producto,Marca,Stock,Precio,Imagen_Producto,created_at,updated_at)"
@@ -86,7 +86,7 @@ public class ProductoDAO {
         return r;
 
     }
-    
+    //Lista por id de un producto
     public Producto listarID(int id){
         Producto p = new Producto();
         String sql = "SELECT * FROM producto WHERE id_producto=?";
@@ -115,6 +115,7 @@ public class ProductoDAO {
         }
         return p;
     }
+    //Actualiza el producto
     public int actualizar(Object[] o) {
         int r = 0;
         String sql = "UPDATE Producto SET id_categoria=?,"
@@ -144,6 +145,7 @@ public class ProductoDAO {
 
         return r;
     }
+    // Metodo para establecer el stock de un producto a 0 en vez de eliminarlo
     public void eliminar(int id) {
         String sql= "UPDATE Producto SET Stock=0 WHERE id_producto=?";
         try{
